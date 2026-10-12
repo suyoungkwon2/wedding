@@ -28,6 +28,20 @@ function useCountdown(target: number, weddingDayUtc: number) {
   };
 }
 
+/** 구글 캘린더 일정 추가 링크 (UTC 로 변환해 넘기므로 보는 사람의 시간대에 맞게 표시됨) */
+function googleCalendarUrl() {
+  const utc = (iso: string) => new Date(iso).toISOString().replace(/[-:]|\.\d{3}/g, "");
+  const { groom, bride, venue } = wedding;
+  const params = new URLSearchParams({
+    action: "TEMPLATE",
+    text: `${groom.name} ♥ ${bride.name} 결혼식`,
+    dates: `${utc(wedding.date)}/${utc(wedding.endDate)}`,
+    location: `${venue.name} ${venue.hall}, ${venue.address}`,
+    ctz: "Asia/Seoul",
+  });
+  return `https://calendar.google.com/calendar/render?${params}`;
+}
+
 export default function DateSection() {
   const { year, month, day } = getWeddingParts();
   const firstWeekday = new Date(Date.UTC(year, month - 1, 1)).getUTCDay();
@@ -47,6 +61,16 @@ export default function DateSection() {
         <p className="section__label">THE DAY</p>
         <h2 className="section__title">{formatKoreanDate()}</h2>
         <p className="section__sub">{formatKoreanTime()}</p>
+
+        <div className="inline-actions calendar-add">
+          <a className="text-button" href={googleCalendarUrl()} target="_blank" rel="noopener noreferrer">
+            <svg className="calendar-add__icon" viewBox="0 0 16 16" aria-hidden>
+              <rect x="2" y="3" width="12" height="11" rx="1.5" />
+              <path d="M2 6.5h12M5.5 1.5v3M10.5 1.5v3" />
+            </svg>
+            구글 캘린더에 추가
+          </a>
+        </div>
 
         <div className="calendar" aria-label={`${year}년 ${month}월 달력`}>
           <p className="calendar__month">{month}월</p>
