@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.gstack/
+!.env.example
+
+# 사진 원본 (웹용은 npm run images 로 public/images 에 생성)
+/photos/
+.omc/

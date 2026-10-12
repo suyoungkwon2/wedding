@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
-
-First, run the development server:
+# 모바일 청첩장
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev   # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 수정 위치
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| 무엇 | 파일 |
+| --- | --- |
+| 이름·날짜·장소·인사말·계좌·안내사항·공유 문구·갤러리 순서 | `src/data/wedding.ts` |
+| 색상·폰트·여백 (디자인 토큰) | `src/app/globals.css` 상단 `:root` |
+| 섹션 마크업 | `src/components/*.tsx` |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 사진
 
-## Learn More
+원본은 `photos/`에 넣습니다 (git에 올라가지 않음). `npm run images`를 실행하면 웹용으로 줄인 사진이 만들어집니다.
 
-To learn more about Next.js, take a look at the following resources:
+- `photos/hero.jpg` → 메인 사진
+- `photos/gallery/*` → 갤러리. 순서는 `wedding.ts`의 `gallery` 배열 순서를 따릅니다.
+- `photos/og.jpg` → 카카오톡 공유 이미지 (1200×630으로 자동 크롭)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 배포 (GitHub Pages)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+`main`에 push하면 `.github/workflows/deploy.yml`이 빌드해서 https://suyoungkwon2.github.io/wedding/ 에 배포합니다.
 
-## Deploy on Vercel
+최초 1회:
+1. 저장소 Settings → Pages → Source를 **GitHub Actions**로 설정
+2. (지도 사용 시) Settings → Secrets and variables → Actions → **Variables**에 `NAVER_MAP_KEY` 등록
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 네이버 지도
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. [네이버 클라우드 플랫폼](https://www.ncloud.com) 콘솔 → Maps → Application 등록 (Dynamic Map 선택)
+2. Web 서비스 URL에 `https://suyoungkwon2.github.io`와 `http://localhost:3000` 등록
+3. 발급된 Client ID를 로컬은 `.env.local`의 `NEXT_PUBLIC_NAVER_MAP_KEY`에, 배포용은 위 GitHub Variables에 등록
+
+키가 없으면 지도 없이 길찾기 링크만 표시됩니다.
+
+## 카카오톡 공유 시
+
+카카오톡은 미리보기를 캐시합니다. OG 정보를 바꾼 뒤에는
+[카카오 공유 디버거](https://developers.kakao.com/tool/debugger/sharing)에서 URL 캐시를 초기화하세요.

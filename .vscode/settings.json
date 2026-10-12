@@ -1,0 +1,5 @@
+{
+  // 입력을 멈추면 0.5초 후 자동 저장 (한글 입력 중 Cmd+S가 'ㄴ'으로 입력되는 문제 회피)
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 500
+}
