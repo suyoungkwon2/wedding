@@ -19,7 +19,7 @@ function Group({ title, accounts, onCopy }: { title: string; accounts: Account[]
       {open && (
         <ul className="accounts__list">
           {accounts.map((a) => (
-            <li key={a.number} className="accounts__item">
+            <li key={`${a.role}-${a.name}`} className="accounts__item">
               <div>
                 <p className="accounts__who">
                   {a.role} <strong>{a.name}</strong>

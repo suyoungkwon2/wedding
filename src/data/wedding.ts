@@ -121,9 +121,8 @@ export const wedding = {
       { role: "어머니", name: "위재희", bank: "○○은행", number: "000-0000-0000" },
     ] as Account[],
     bride: [
-      { role: "신부", name: "권수영", bank: "○○은행", number: "000-0000-0000" },
-      { role: "아버지", name: "권광", bank: "○○은행", number: "000-0000-0000" },
-      { role: "어머니", name: "구선주", bank: "○○은행", number: "000-0000-0000" },
+      { role: "신부", name: "권수영", bank: "토스뱅크", number: "1000-1642-7943" },
+      { role: "부모님", name: "권광 · 구선주", bank: "신한은행", number: "110-639-995374" },
     ] as Account[],
   },
 
