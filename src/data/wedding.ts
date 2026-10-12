@@ -74,6 +74,9 @@ export const wedding = {
     image: "/images/gallery/Studio_20260528_KSY28287.jpg",
   },
 
+  /** 배경음악 (public/ 기준 경로). 비우면 음악 버튼이 사라집니다 */
+  bgm: "/music/Wedding Invitation - Jason Farnham.mp3",
+
   /**
    * 갤러리 순서 = 이 배열 순서. 파일은 public/images/gallery/ 에 있습니다.
    * (원본은 photos/gallery/ 에 넣고 npm run images 실행)

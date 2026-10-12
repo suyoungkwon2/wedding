@@ -15,7 +15,6 @@ export default function Location() {
     { label: "네이버지도", href: venue.naverPlaceUrl },
     { label: "카카오맵", href: `https://map.kakao.com/link/map/${q},${venue.lat},${venue.lng}` },
     { label: "티맵", href: `tmap://route?goalname=${q}&goalx=${venue.lng}&goaly=${venue.lat}` },
-    { label: "구글지도", href: `https://www.google.com/maps/search/?api=1&query=${venue.lat},${venue.lng}` },
   ];
 
   return (

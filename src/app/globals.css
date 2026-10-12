@@ -759,6 +759,78 @@ ul {
   color: var(--color-muted);
 }
 
+/* ───────── BGM 버튼 (우측 상단 플로팅) ───────── */
+.bgm {
+  --bgm-tint: rgba(208, 236, 255, 0.1); /* 아주 연한 하늘색 + 투명 */
+  --bgm-bar: #ffffff;
+  position: fixed;
+  top: 14px;
+  /* 데스크톱에서도 모바일 화면(--page-width) 안쪽 우측에 붙도록 */
+  right: max(14px, calc((100vw - var(--page-width)) / 2 + 14px));
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--bgm-tint);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.bgm__bars {
+  display: flex;
+  align-items: center; /* 막대 가운데 정렬 */
+  gap: 2.5px;
+  height: 14px;
+}
+
+/* 둥근 끝이 찌그러지지 않도록 scale 대신 height 로 움직임 */
+.bgm__bars span {
+  width: 2.5px;
+  height: 4px; /* 멈춤 */
+  border-radius: 999px;
+  background: var(--bgm-bar);
+  box-shadow: 0 0 2px rgba(80, 120, 150, 0.25); /* 밝은 배경 위에서도 보이도록 */
+  transition: height 0.3s ease;
+}
+
+.bgm.is-playing .bgm__bars span {
+  animation: bgm-bar 0.9s ease-in-out infinite alternate;
+}
+
+.bgm.is-playing .bgm__bars span:nth-child(2) {
+  animation-duration: 0.7s;
+  animation-delay: -0.3s;
+}
+
+.bgm.is-playing .bgm__bars span:nth-child(3) {
+  animation-duration: 1.1s;
+  animation-delay: -0.5s;
+}
+
+.bgm.is-playing .bgm__bars span:nth-child(4) {
+  animation-duration: 0.8s;
+  animation-delay: -0.15s;
+}
+
+@keyframes bgm-bar {
+  from {
+    height: 4px;
+  }
+  to {
+    height: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bgm.is-playing .bgm__bars span {
+    animation: none;
+    height: 10px;
+  }
+}
+
 /* ───────── Toast ───────── */
 .toast {
   position: fixed;
