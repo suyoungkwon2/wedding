@@ -566,58 +566,185 @@ ul {
   margin-top: 20px;
 }
 
-.lightbox {
+/* 라이트박스 (Framer Interactive Gallery 스타일) */
+.lb {
+  --lb-bg: rgba(18, 18, 18, 0.62); /* 배경 진하기: 마지막 숫자를 내리면 사이트가 더 비쳐 보임 */
+  --lb-blur: 6px; /* 배경 흐림 정도 */
+  --lb-spring: linear(0, 0.047, 0.147, 0.268, 0.393, 0.512, 0.611, 0.702, 0.777, 0.837, 0.884, 0.92, 0.946, 0.966, 0.98, 0.989, 0.995, 0.999, 1.002, 1.003, 1.004, 1.004, 1.003, 1.003, 1.002, 1.002, 1.002, 1.001, 1.001, 1.001, 1);
   position: fixed;
   inset: 0;
   z-index: 100;
+  background: var(--lb-bg);
+  -webkit-backdrop-filter: blur(var(--lb-blur));
+  backdrop-filter: blur(var(--lb-blur));
+  color: #fff;
+  font-family: var(--font-sans);
+  animation: lb-fade 0.3s ease both;
+}
+
+.lb.is-closing {
+  animation: lb-fade-out 0.25s ease both;
+}
+
+@keyframes lb-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes lb-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+.lb__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--page-width);
+  height: 100%;
+  margin: 0 auto;
+  padding-top: calc(24px + env(safe-area-inset-top));
+}
+
+.lb__btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #000;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   color: #fff;
+  transition: background 0.2s;
 }
 
-.lightbox__top {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 20px;
-  font-size: 13px;
-  letter-spacing: 0.1em;
+.lb__close {
+  width: 40px;
+  height: 40px;
 }
 
-.lightbox__close {
-  font-size: 18px;
-  padding: 4px 8px;
-}
-
-.lightbox__image {
+.lb__stage {
   position: relative;
+  flex: 1;
   width: 100%;
-  max-width: var(--page-width);
-  height: 80dvh;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+  touch-action: none;
 }
 
-.lightbox__nav {
+.lb__drag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 85%;
+  height: 100%;
+  transition: transform 0.35s var(--lb-spring);
+}
+
+.lb__drag.is-dragging {
+  transition: none;
+}
+
+.lb__image {
+  display: block;
+  max-width: 100%;
+  max-height: min(65dvh, 100%);
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.45);
+  user-select: none;
+  -webkit-user-drag: none;
+  animation: lb-enter 0.54s var(--lb-spring) backwards;
+}
+
+@keyframes lb-enter {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+}
+
+.lb__nav {
   position: absolute;
   top: 50%;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
   transform: translateY(-50%);
-  padding: 16px;
-  font-size: 32px;
-  font-weight: 200;
-  color: rgba(255, 255, 255, 0.7);
 }
 
-.lightbox__nav--prev {
-  left: 4px;
+.lb__nav--prev {
+  left: 8px;
 }
 
-.lightbox__nav--next {
-  right: 4px;
+.lb__nav--next {
+  right: 8px;
+}
+
+.lb__bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.lb__count {
+  margin-bottom: 12px;
+  font-size: 13px;
+  opacity: 0.6;
+  font-variant-numeric: tabular-nums;
+}
+
+.lb__thumbs {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  overflow-x: auto;
+  padding: 4px 24px calc(24px + env(safe-area-inset-bottom));
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.lb__thumbs::-webkit-scrollbar {
+  display: none;
+}
+
+.lb__thumb {
+  flex-shrink: 0;
+  width: 64px;
+  height: 48px;
+  border-radius: 6px;
+  overflow: hidden;
+  opacity: 0.4;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  transition: opacity 0.2s, outline-color 0.2s;
+}
+
+.lb__thumb.is-active {
+  opacity: 1;
+  outline-color: #fff;
+}
+
+.lb__thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lb,
+  .lb.is-closing,
+  .lb__image {
+    animation: none;
+  }
 }
 
 /* ───────── 6. Location ───────── */
@@ -761,7 +888,7 @@ ul {
 
 /* ───────── BGM 버튼 (우측 상단 플로팅) ───────── */
 .bgm {
-  --bgm-tint: rgba(208, 236, 255, 0.1); /* 아주 연한 하늘색 + 투명 */
+  --bgm-tint: rgba(136, 142, 166, 0.15); /* 아주 연한 하늘색 + 투명 */
   --bgm-bar: #ffffff;
   position: fixed;
   top: 14px;
