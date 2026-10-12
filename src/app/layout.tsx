@@ -1,22 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { Diphylleia, Noto_Serif_KR, Noto_Sans_KR } from "next/font/google";
+import { Diphylleia } from "next/font/google";
 import { wedding } from "@/data/wedding";
 import { basePath } from "@/lib/asset";
 import "./globals.css";
-
-const serif = Noto_Serif_KR({
-  variable: "--font-serif",
-  weight: ["300", "400", "600"],
-  preload: false,
-  display: "swap",
-});
-
-const sans = Noto_Sans_KR({
-  variable: "--font-sans",
-  weight: ["300", "400", "500"],
-  preload: false,
-  display: "swap",
-});
 
 const display = Diphylleia({
   variable: "--font-display",
@@ -57,7 +43,18 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="ko" className={`${serif.variable} ${sans.variable} ${display.variable}`}>
+    <html lang="ko" className={display.variable}>
+      <head>
+        {/* 가비아 흘돋체(한국어 전체)·마음결체(섹션 영문 제목): 글자 범위별로 쪼갠 파일이라 화면에 쓰인 글자만 내려받음 */}
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/fonts-archive/GabiaHeuldot/subsets/GabiaHeuldot-dynamic-subset.css"
+        />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/fonts-archive/GabiaMaeumgyeol/subsets/GabiaMaeumgyeol-dynamic-subset.css"
+        />
+      </head>
       <body>{children}</body>
     </html>
   );

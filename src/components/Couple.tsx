@@ -10,18 +10,16 @@ function Parent({ name, deceased }: { name: string; deceased?: boolean }) {
   );
 }
 
-function Row({ person, role }: { person: Person; role: string }) {
+function Family({ label, person }: { label: string; person: Person }) {
   return (
-    <p className="couple__row">
-      <span className="couple__parents">
+    <div className="couple__family">
+      <p className="couple__label">{label}</p>
+      <p className="couple__line">
         <Parent name={person.father} deceased={person.fatherDeceased} />
         <span className="couple__dot">·</span>
-        <Parent name={person.mother} deceased={person.motherDeceased} />
-      </span>
-      <span className="couple__relation">의 {person.relation}</span>
-      <span className="couple__role">{role}</span>
-      <strong className="couple__name">{person.name}</strong>
-    </p>
+        <Parent name={person.mother} deceased={person.motherDeceased} />의 {person.relation} {person.name}
+      </p>
+    </div>
   );
 }
 
@@ -29,8 +27,8 @@ export default function Couple() {
   return (
     <section className="section section--tight">
       <Reveal>
-        <Row person={wedding.groom} role="신랑" />
-        <Row person={wedding.bride} role="신부" />
+        <Family label="신랑측 혼주" person={wedding.groom} />
+        <Family label="신부측 혼주" person={wedding.bride} />
       </Reveal>
     </section>
   );

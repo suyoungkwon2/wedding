@@ -25,9 +25,11 @@
   --color-accent: #111111; /* 강조색 (달력 날짜 등) */
   --color-point: #ff4f6f; /* 포인트 핑크 (히어로 & 등) */
 
-  --font-serif: "Noto Serif KR", serif;
+  --font-ko: "Gabia Heuldot"; /* 한국어 본문·제목 (히어로 제외) */
+  --font-serif: var(--font-ko), serif;
   --font-hand: "EF_watermelonSalad", var(--font-sans);
-  --font-sans: "Noto Sans KR", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-label: "Gabia Maeumgyeol", var(--font-sans); /* 섹션 영문 제목 (INFORMATION 등) */
+  --font-sans: var(--font-ko), -apple-system, BlinkMacSystemFont, sans-serif;
 
   --page-width: 430px; /* 모바일 화면 폭 */
   --gutter: 28px;
@@ -98,6 +100,7 @@ ul {
 }
 
 .section__label {
+  font-family: var(--font-label);
   font-size: 11px;
   letter-spacing: 0.3em;
   color: var(--color-muted);
@@ -420,42 +423,29 @@ ul {
 }
 
 /* ───────── 3. Couple ───────── */
-.couple__row {
-  display: flex;
-  justify-content: center;
-  align-items: baseline;
-  flex-wrap: wrap;
-  font-size: 15px;
-  line-height: 2.4;
+.couple__family + .couple__family {
+  margin-top: 36px;
 }
 
-.couple__parents {
-  color: var(--color-text);
+.couple__label {
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.couple__line {
+  margin-top: 6px;
+  font-size: 19px;
+  color: #3a3a3a;
+  line-height: 1.6;
 }
 
 .couple__dot {
-  margin: 0 4px;
+  margin: 0 0.45em;
   color: var(--color-muted);
 }
 
 .couple__deceased {
   color: var(--color-sub);
-}
-
-.couple__relation {
-  margin-right: 12px;
-  font-size: 13px;
-  color: var(--color-sub);
-}
-
-.couple__role {
-  margin-right: 8px;
-  font-size: 13px;
-  color: var(--color-sub);
-}
-
-.couple__name {
-  font-weight: 500;
 }
 
 /* ───────── 4. Date ───────── */
