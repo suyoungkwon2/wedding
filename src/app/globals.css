@@ -764,6 +764,29 @@ ul {
   height: 280px;
 }
 
+/* 약도 */
+.rough-map {
+  margin: 40px auto 0;
+  max-width: 340px;
+  color: var(--color-text);
+}
+
+.rough-map svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  font-family: var(--font-sans);
+  fill: currentColor;
+}
+
+.rough-map__road {
+  fill: var(--color-muted);
+}
+
+.rough-map__shuttle {
+  fill: var(--color-sub);
+}
+
 .map-links {
   display: flex;
   justify-content: center;
@@ -778,12 +801,14 @@ ul {
 
 .transport {
   margin-top: 56px;
-  text-align: left;
+  text-align: center;
 }
 
+/* 라벨을 위에, 내용을 아래 전체 폭으로 (지하철 안내가 한 줄에 들어가도록) */
 .transport__row {
   display: flex;
-  gap: 24px;
+  flex-direction: column;
+  gap: 6px;
   padding: 18px 0;
 }
 
@@ -792,7 +817,6 @@ ul {
 }
 
 .transport dt {
-  flex: 0 0 48px;
   font-size: 13px;
   font-weight: 500;
 }
@@ -800,8 +824,19 @@ ul {
 .transport dd {
   display: flex;
   flex-direction: column;
-  font-size: 13px;
+  align-items: center;
+  /* 아주 좁은 화면에서는 글자를 살짝 줄여 한 줄 유지 */
+  font-size: min(13px, calc((100cqw - 2 * var(--gutter)) / 23));
   color: var(--color-sub);
+}
+
+.transport dd span {
+  white-space: nowrap;
+}
+
+/* 문장형 안내(셔틀버스·주차)는 화면이 좁으면 자연스럽게 줄바꿈 */
+.transport dd span.is-sentence {
+  white-space: normal;
 }
 
 /* ───────── 7. Accounts ───────── */
@@ -872,6 +907,7 @@ ul {
 
 .notices__body {
   margin-top: 6px;
+  white-space: pre-line; /* 문구의 \n 줄바꿈 반영 */
   font-size: 14px;
   color: var(--color-sub);
 }

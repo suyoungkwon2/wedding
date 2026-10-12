@@ -3,6 +3,7 @@
 import { wedding } from "@/data/wedding";
 import { useCopy } from "@/lib/useCopy";
 import NaverMap from "./NaverMap";
+import RoughMap from "./RoughMap";
 import Reveal from "./Reveal";
 import Toast from "./Toast";
 
@@ -55,12 +56,18 @@ export default function Location() {
               <dt>{t.label}</dt>
               <dd>
                 {t.lines.map((line) => (
-                  <span key={line}>{line}</span>
+                  <span key={line} className={t.sentence ? "is-sentence" : undefined}>
+                    {line}
+                  </span>
                 ))}
               </dd>
             </div>
           ))}
         </dl>
+      </Reveal>
+
+      <Reveal>
+        <RoughMap venueName={venue.name} />
       </Reveal>
       <Toast message={message} />
     </section>

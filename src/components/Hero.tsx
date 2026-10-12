@@ -45,7 +45,9 @@ function HandChars({ text, start = 0, className }: { text: string; start?: numbe
 
 export default function Hero() {
   const { groom, bride, venue, hero } = wedding;
-  const { year, month, day, weekday } = getWeddingParts();
+  const { year, month, day, hour, minute, weekday } = getWeddingParts();
+  // 예: 2:30PM
+  const time = `${hour % 12 || 12}:${String(minute).padStart(2, "0")}${hour < 12 ? "AM" : "PM"}`;
 
   return (
     <section className="hero" style={{ "--title-chars": TITLE_CHARS } as React.CSSProperties}>
@@ -112,7 +114,7 @@ export default function Hero() {
       {/* eslint-enable @next/next/no-img-element */}
 
       <p className="hero__date">
-        {year} {month} {day} {WEEKDAYS_KO[weekday]}요일
+        {year} {month} {day} {WEEKDAYS_KO[weekday]}요일 {time}
       </p>
       <p className="hero__venue">
         {venue.name} {venue.hall}

@@ -2,7 +2,7 @@
 
 export type Person = {
   name: string;
-  /** 영문 이름 (히어로 등 장식용) */
+  /** 영문 이름 (페이지 맨 아래 문구) */
   nameEn: string;
   /** 서열 표기: 장남, 차녀, 아들, 딸 등 */
   relation: string;
@@ -23,14 +23,14 @@ export type Account = {
 export const wedding = {
   groom: {
     name: "윤석후",
-    nameEn: "Seokhoo",
+    nameEn: "Sirkhoo Kai Yun",
     relation: "아들",
     father: "윤영민",
     mother: "위재희",
   } as Person,
   bride: {
     name: "권수영",
-    nameEn: "Suyoung",
+    nameEn: "Suyoung Mel Kwon",
     relation: "딸",
     father: "권광",
     mother: "구선주",
@@ -48,11 +48,10 @@ export const wedding = {
     lat: 37.5223262,
     lng: 127.0390205,
     naverPlaceUrl: "https://naver.me/5ne4oSX1",
-    // TODO: 예식장에 확인 후 수정하세요
     transport: [
-      { label: "지하철", lines: ["수인분당선·7호선 강남구청역 ○번 출구 도보 ○분", "수인분당선 압구정로데오역 ○번 출구 도보 ○분"] },
-      { label: "버스", lines: ["○○○ 정류장 하차"] },
-      { label: "주차", lines: ["건물 내 주차 ○시간 무료"] },
+      { label: "지하철", lines: ["수인분당선·7호선 강남구청역 3-1번 출구 도보 8분", "수인분당선 압구정로데오역 5번 출구 도보 9분"], sentence: false },
+      { label: "셔틀버스", lines: ["강남구청역 3번 출구 앞에서 셔틀버스가 운행됩니다."], sentence: true },
+      { label: "주차", lines: ["주차는 1시간 30분 무료입니다."], sentence: true },
     ],
   },
 
@@ -129,21 +128,17 @@ export const wedding = {
     ] as Account[],
   },
 
-  // TODO: 안내 문구를 예식장 정보에 맞게 수정하세요
   notices: [
     {
       title: "식사 안내",
-      body: "예식 후 2층 연회장에서 뷔페 식사가 준비되어 있습니다.",
+      body: "예식 후 한 층 아래 5층 연회홀에 식사가 준비되어 있습니다.\n오후 2시부터 4시까지 편하게 이용해 주세요.",
     },
     {
-      title: "화환 안내",
-      body: "마음만 감사히 받겠습니다. 화환은 정중히 사양합니다.",
-    },
-    {
-      title: "포토부스",
-      body: "로비에 포토부스가 마련되어 있습니다. 소중한 순간을 남겨주세요.",
+      title: "주차 안내",
+      body: "예식 당일 주변 교통이 혼잡하여\n주차가 다소 어려울 수 있습니다.\n가급적 대중교통을 이용해 주시면 감사하겠습니다.",
     },
   ],
+
 
   /** 공유(OG) 정보 */
   share: {
