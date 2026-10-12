@@ -71,7 +71,7 @@ export const wedding = {
 
   /** public/images/hero.jpg (원본은 photos/hero.jpg → npm run images) */
   hero: {
-    image: "/images/hero.jpg",
+    image: "/images/gallery/Studio_20260528_KSY28287.jpg",
   },
 
   /**

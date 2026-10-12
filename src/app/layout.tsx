@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Noto_Serif_KR, Noto_Sans_KR } from "next/font/google";
+import { Diphylleia, Noto_Serif_KR, Noto_Sans_KR } from "next/font/google";
 import { wedding } from "@/data/wedding";
 import { basePath } from "@/lib/asset";
 import "./globals.css";
@@ -15,6 +15,13 @@ const sans = Noto_Sans_KR({
   variable: "--font-sans",
   weight: ["300", "400", "500"],
   preload: false,
+  display: "swap",
+});
+
+const display = Diphylleia({
+  variable: "--font-display",
+  weight: "400",
+  subsets: ["latin"],
   display: "swap",
 });
 
@@ -50,7 +57,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="ko" className={`${serif.variable} ${sans.variable}`}>
+    <html lang="ko" className={`${serif.variable} ${sans.variable} ${display.variable}`}>
       <body>{children}</body>
     </html>
   );

@@ -1,19 +1,32 @@
+/* 손글씨 폰트: EF 수박샐러드 (이포트, 상업적 이용 가능) */
+@font-face {
+  font-family: "EF_watermelonSalad";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-EF@1.0/EF_watermelonSalad.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ───────── Design tokens ───────── */
 :root {
-  --color-bg: #fafaf4; /* 아주 연한 아이보리 */
+  --color-bg: #FAF8F4; /* 아주 연한 아이보리 */
   --color-on-dark: #ffffff; /* 검은 바탕 위 글자 (달력 예식일, 토스트) */
   --color-backdrop: #ecebe7; /* 데스크톱에서 모바일 화면 바깥 배경 */
 
-  /* 종이 질감: 고운 입자 + 은은한 얼룩. opacity 값(0.05, 0.035)을 올리면 질감이 진해집니다 */
-  --paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.3 0 0 0 0 0.22 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  --paper-mottle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.48 0 0 0 0 0.35 0 0 0 0.035 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E");
+  /* 종이 질감: 입자(grain) + 얼룩(mottle).WE
+     진하기 = 각 줄 끝쪽 '0 0 0 0.12 0' 의 0.12 / 0.07 값 (올리면 진해짐)
+     입자 크기 = baseFrequency (작을수록 굵어짐) */
+  --paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.3 0 0 0 0 0.22 0 0 0 0.12 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --paper-mottle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.008' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.48 0 0 0 0 0.35 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E");
   --color-text: #111111;
   --color-sub: #6b6b6b;
   --color-muted: #a3a3a3;
   --color-line: #e6e6e6;
   --color-accent: #111111; /* 강조색 (달력 날짜 등) */
+  --color-point: #ff4f6f; /* 포인트 핑크 (히어로 & 등) */
 
   --font-serif: "Noto Serif KR", serif;
+  --font-hand: "EF_watermelonSalad", var(--font-sans);
   --font-sans: "Noto Sans KR", -apple-system, BlinkMacSystemFont, sans-serif;
 
   --page-width: 430px; /* 모바일 화면 폭 */
@@ -71,6 +84,7 @@ ul {
   background-color: var(--color-bg);
   background-image: var(--paper-grain), var(--paper-mottle);
   overflow: hidden;
+  container-type: inline-size; /* 히어로의 100cqw 기준 */
 }
 
 /* ───────── Common ───────── */
@@ -144,47 +158,125 @@ ul {
   }
 }
 
-/* ───────── 1. Hero ───────── */
+/* ───────── 1. Hero (Figma: iPhone 17 - 2) ───────── */
+/* 모든 크기는 Figma 402px 화면 기준 px 값 × --u (화면폭/402) 로 비율 유지 */
 .hero {
-  padding: 72px var(--gutter) 0;
-  text-align: center;
-}
-
-.hero__eyebrow {
-  font-size: 11px;
-  letter-spacing: 0.35em;
-  color: var(--color-sub);
-}
-
-.hero__photo {
+  --u: calc(100cqw / 402);
   position: relative;
-  margin: 32px calc(var(--gutter) * -1) 0;
-  aspect-ratio: 3 / 4;
+  height: calc(var(--u) * 1040);
+  color: #000;
 }
 
-.hero__photo img {
-  object-fit: cover;
+.hero__title {
+  position: absolute;
+  top: calc(var(--u) * 105);
+  left: calc(50% + var(--u) * 0.5);
+  transform: translateX(-50%);
+  font-family: var(--font-display), serif;
+  font-size: calc(var(--u) * 56);
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.hero__deco {
+  position: absolute;
+  display: block;
+  max-width: none;
+  pointer-events: none;
 }
 
 .hero__names {
-  margin-top: 48px;
-  font-family: var(--font-serif);
-  font-size: 24px;
-  font-weight: 400;
-  letter-spacing: 0.02em;
+  position: absolute;
+  top: calc(var(--u) * 384);
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-hand);
+  font-size: calc(var(--u) * 36);
+  line-height: calc(var(--u) * 40);
+  white-space: pre;
+  letter-spacing: 0;
 }
 
 .hero__amp {
-  margin: 0 14px;
-  font-weight: 300;
-  color: var(--color-muted);
+  color: var(--color-point);
 }
 
-.hero__meta {
-  margin-top: 16px;
-  font-size: 14px;
-  color: var(--color-sub);
-  letter-spacing: 0.04em;
+.hero__photo {
+  position: absolute;
+  top: calc(var(--u) * 446);
+  left: calc(var(--u) * 28);
+  width: calc(var(--u) * 345.058);
+  height: calc(var(--u) * 483.05);
+  border-radius: 4px;
+  box-shadow: 1px 1px 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.hero__photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.hero__photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset -0.2px -0.2px 1px 0 rgba(0, 0, 0, 0.05), inset 0.5px 0.5px 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.hero__bow {
+  left: calc(var(--u) * 310.862);
+  top: calc(var(--u) * 712.32);
+  width: calc(var(--u) * 25.117);
+  height: calc(var(--u) * 34.164);
+  transform: rotate(90deg);
+  transform-origin: calc(var(--u) * 12.978) calc(var(--u) * 17.18);
+}
+
+.hero__doodle-right {
+  left: calc(var(--u) * 315.426);
+  top: calc(var(--u) * 519.74);
+  width: calc(var(--u) * 67.718);
+  height: calc(var(--u) * 92.619);
+  transform: rotate(7.64deg);
+}
+
+.hero__doodle-left {
+  left: calc(var(--u) * 18.297);
+  top: calc(var(--u) * 549.44);
+  width: calc(var(--u) * 63.036);
+  height: calc(var(--u) * 91.796);
+  transform: rotate(-6.91deg);
+}
+
+.hero__date,
+.hero__venue {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-hand);
+  white-space: nowrap;
+  letter-spacing: 0;
+}
+
+.hero__date {
+  top: calc(var(--u) * 951);
+  left: calc(50% + var(--u) * 0.5);
+  font-size: calc(var(--u) * 24);
+  line-height: calc(var(--u) * 26);
+}
+
+.hero__venue {
+  top: calc(var(--u) * 989);
+  font-size: calc(var(--u) * 16);
+  line-height: calc(var(--u) * 18);
 }
 
 /* ───────── 2. Greeting ───────── */
