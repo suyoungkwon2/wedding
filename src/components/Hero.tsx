@@ -1,6 +1,7 @@
 import { wedding } from "@/data/wedding";
 import { asset } from "@/lib/asset";
 import { getWeddingParts, WEEKDAYS_KO } from "@/lib/date";
+import HeroPhotoSwap from "./HeroPhotoSwap";
 
 // Figma "iPhone 17 - 2" (402px 폭) 기준 좌표. CSS에서 --u(=화면폭/402)를 곱해 비율대로 배치합니다.
 // [파일, left, top, width, height, rotate(deg)] — SVG 원본 크기 기준
@@ -102,10 +103,8 @@ export default function Hero() {
         <HandChars text={`  ${groom.name.split("").join(" ")}`} start={bride.name.length + 1} />
       </p>
 
-      <div className="hero__photo">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={asset(hero.image)} alt={`${bride.name}, ${groom.name}`} fetchPriority="high" />
-      </div>
+      {/* 첫 사진 → 스크롤로 사진이 다 보이면 손끝에서 파티클이 퍼지며 웨딩 사진으로 전환 */}
+      <HeroPhotoSwap before={hero.before} after={hero.image} alt={`${bride.name}, ${groom.name}`} />
 
       {/* eslint-disable @next/next/no-img-element */}
       <img className="hero__deco hero__bow" src={asset("/images/hero-deco/bow.svg")} alt="" aria-hidden />

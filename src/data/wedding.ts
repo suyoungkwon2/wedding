@@ -71,6 +71,8 @@ export const wedding = {
   /** public/images/hero.jpg (원본은 photos/hero.jpg → npm run images) */
   hero: {
     image: "/images/gallery/Studio_20260528_KSY28287.jpg",
+    /** 처음 보이는 사진. 스크롤하면 image 로 바뀝니다 */
+    before: "/images/gallery/Self_DSC01441.jpg",
   },
 
   /** 배경음악 (public/ 기준 경로). 비우면 음악 버튼이 사라집니다 */
