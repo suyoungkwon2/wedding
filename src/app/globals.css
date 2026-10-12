@@ -30,6 +30,7 @@
   --font-hand: "EF_watermelonSalad", var(--font-sans);
   --font-label: "Gabia Maeumgyeol", var(--font-sans); /* 섹션 영문 제목 (INFORMATION 등) */
   --font-sans: var(--font-ko), -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-map: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, sans-serif; /* 약도 */
 
   --page-width: 430px; /* 모바일 화면 폭 */
   --gutter: 28px;
@@ -807,14 +808,14 @@ ul {
   padding: 8px;
   background: var(--map-bg);
   border-radius: 4px;
-  color: var(--color-text);
+  color: #333333; /* 약도 선·글자색 */
 }
 
 .rough-map svg {
   display: block;
   width: 100%;
   height: auto;
-  font-family: var(--font-sans);
+  font-family: var(--font-map);
   fill: currentColor;
 }
 

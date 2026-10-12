@@ -54,6 +54,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/gh/fonts-archive/GabiaMaeumgyeol/subsets/GabiaMaeumgyeol-dynamic-subset.css"
         />
+        {/* Pretendard Variable: 약도 글자 */}
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+        />
       </head>
       <body>{children}</body>
     </html>

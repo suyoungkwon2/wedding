@@ -70,7 +70,7 @@ function BadgeSB({ x, y }: { x: number; y: number }) {
   return (
     <g>
       <rect x={x - 22} y={y - 9} width="44" height="18" rx="9" fill={INK} />
-      <text x={x} y={y + 3.4} textAnchor="middle" fontSize="9.5" fontWeight="700" fill="var(--map-bg)">
+      <text x={x} y={y + 3.4} textAnchor="middle" fontSize="9.5" fill="var(--map-bg)">
         수인분당
       </text>
     </g>
@@ -81,7 +81,7 @@ function Badge7({ x, y }: { x: number; y: number }) {
   return (
     <g>
       <circle cx={x} cy={y} r="9" fill={INK} />
-      <text x={x} y={y + 3.6} textAnchor="middle" fontSize="11" fontWeight="700" fill="var(--map-bg)">
+      <text x={x} y={y + 3.6} textAnchor="middle" fontSize="11" fill="var(--map-bg)">
         7
       </text>
     </g>
@@ -109,7 +109,7 @@ export default function RoughMap({ venueName }: { venueName: string }) {
 
         {/* 압구정로데오역 (압구정로 × 선릉로) */}
         <BadgeSB x={X} y={Y_APGU} />
-        <text x={X + 8} y={Y_APGU - 13} fontSize="13" fontWeight="700">
+        <text x={X + 8} y={Y_APGU - 13} fontSize="13">
           압구정로데오역
         </text>
         <Exit x={X - 17} y={Y_APGU + 22} n="5" />
@@ -120,13 +120,13 @@ export default function RoughMap({ venueName }: { venueName: string }) {
 
         {/* 학동사거리 (도산대로 × 선릉로) */}
         <circle cx={X} cy={Y_DOSAN} r="3.5" fill={INK} />
-        <text x={X + 9} y={Y_DOSAN - 8} fontSize="12" fontWeight="700">
+        <text x={X + 9} y={Y_DOSAN - 8} fontSize="12">
           학동사거리
         </text>
 
         {/* 예식장 */}
         <Pin x={X - 18} y={Y_DOSAN + 66} />
-        <text x={X - 34} y={Y_DOSAN + 60} textAnchor="end" fontSize="17" fontWeight="700" className="rough-map__venue">
+        <text x={X - 34} y={Y_DOSAN + 60} textAnchor="end" fontSize="17" fontWeight="600" className="rough-map__venue">
           {venueName}
         </text>
 
@@ -139,7 +139,7 @@ export default function RoughMap({ venueName }: { venueName: string }) {
         <text x={X - 85} y={Y_HAKDONG - 18} textAnchor="end" fontSize="12" className="rough-map__shuttle">
           셔틀버스
         </text>
-        <text x={X + 8} y={Y_HAKDONG + 25} fontSize="13" fontWeight="700">
+        <text x={X + 8} y={Y_HAKDONG + 25} fontSize="13">
           강남구청역
         </text>
       </svg>
