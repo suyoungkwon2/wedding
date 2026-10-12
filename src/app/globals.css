@@ -766,8 +766,12 @@ ul {
 
 /* 약도 */
 .rough-map {
-  margin: 40px auto 0;
+  --map-bg: #f9f9f4;
+  margin: 28px auto 0;
   max-width: 340px;
+  padding: 8px;
+  background: var(--map-bg);
+  border-radius: 4px;
   color: var(--color-text);
 }
 
@@ -800,7 +804,7 @@ ul {
 }
 
 .transport {
-  margin-top: 56px;
+  margin-top: 36px;
   text-align: center;
 }
 

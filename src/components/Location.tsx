@@ -50,6 +50,10 @@ export default function Location() {
       </nav>
 
       <Reveal>
+        <RoughMap venueName={venue.name} />
+      </Reveal>
+
+      <Reveal>
         <dl className="transport">
           {venue.transport.map((t) => (
             <div key={t.label} className="transport__row">
@@ -66,9 +70,6 @@ export default function Location() {
         </dl>
       </Reveal>
 
-      <Reveal>
-        <RoughMap venueName={venue.name} />
-      </Reveal>
       <Toast message={message} />
     </section>
   );

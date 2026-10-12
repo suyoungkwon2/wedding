@@ -11,7 +11,7 @@
 // 블랙&화이트. 예식장 핀만 포인트 핑크(--color-point, 히어로와 동일)
 const INK = "currentColor";
 
-// 좌표 (viewBox 340 × 390)
+// 좌표 (viewBox 340 × 390 중 y 30~354만 표시)
 const X = 210; // 선릉로
 const Y_APGU = 64; // 압구정로
 const Y_DOSAN = 176; // 도산대로
@@ -21,7 +21,7 @@ function Pin({ x, y }: { x: number; y: number }) {
   return (
     <g transform={`translate(${x - 8} ${y - 21})`}>
       <path d="M8 0C3.6 0 0 3.5 0 7.9 0 13.6 8 21 8 21s8-7.4 8-13.1C16 3.5 12.4 0 8 0Z" fill="var(--color-point)" />
-      <circle cx="8" cy="7.8" r="3" fill="var(--color-bg)" />
+      <circle cx="8" cy="7.8" r="3" fill="var(--map-bg)" />
     </g>
   );
 }
@@ -30,9 +30,9 @@ function Bus({ x, y }: { x: number; y: number }) {
   return (
     <g transform={`translate(${x - 7} ${y - 8})`} fill={INK}>
       <rect x="0" y="0" width="14" height="14" rx="3" />
-      <rect x="2.2" y="2.4" width="9.6" height="5" rx="1" fill="var(--color-bg)" />
-      <circle cx="4" cy="10.6" r="1.1" fill="var(--color-bg)" />
-      <circle cx="10" cy="10.6" r="1.1" fill="var(--color-bg)" />
+      <rect x="2.2" y="2.4" width="9.6" height="5" rx="1" fill="var(--map-bg)" />
+      <circle cx="4" cy="10.6" r="1.1" fill="var(--map-bg)" />
+      <circle cx="10" cy="10.6" r="1.1" fill="var(--map-bg)" />
       <rect x="1.6" y="14" width="2.4" height="2.2" rx="0.6" />
       <rect x="10" y="14" width="2.4" height="2.2" rx="0.6" />
     </g>
@@ -44,7 +44,7 @@ function Exit({ x, y, n }: { x: number; y: number; n: string }) {
   const w = n.length > 1 ? 26 : 17;
   return (
     <g>
-      <rect x={x - w / 2} y={y - 8.5} width={w} height="17" fill="var(--color-bg)" stroke={INK} strokeWidth="1" />
+      <rect x={x - w / 2} y={y - 8.5} width={w} height="17" fill="var(--map-bg)" stroke={INK} strokeWidth="0.7" />
       <text x={x} y={y + 4} textAnchor="middle" fontSize="11">
         {n}
       </text>
@@ -70,7 +70,7 @@ function BadgeSB({ x, y }: { x: number; y: number }) {
   return (
     <g>
       <rect x={x - 22} y={y - 9} width="44" height="18" rx="9" fill={INK} />
-      <text x={x} y={y + 3.4} textAnchor="middle" fontSize="9.5" fontWeight="700" fill="var(--color-bg)">
+      <text x={x} y={y + 3.4} textAnchor="middle" fontSize="9.5" fontWeight="700" fill="var(--map-bg)">
         수인분당
       </text>
     </g>
@@ -81,7 +81,7 @@ function Badge7({ x, y }: { x: number; y: number }) {
   return (
     <g>
       <circle cx={x} cy={y} r="9" fill={INK} />
-      <text x={x} y={y + 3.6} textAnchor="middle" fontSize="11" fontWeight="700" fill="var(--color-bg)">
+      <text x={x} y={y + 3.6} textAnchor="middle" fontSize="11" fontWeight="700" fill="var(--map-bg)">
         7
       </text>
     </g>
@@ -91,10 +91,10 @@ function Badge7({ x, y }: { x: number; y: number }) {
 export default function RoughMap({ venueName }: { venueName: string }) {
   return (
     <figure className="rough-map">
-      <svg viewBox="0 0 340 390" role="img" aria-label={`${venueName} 약도`}>
+      <svg viewBox="0 30 340 324" role="img" aria-label={`${venueName} 약도`}>
         {/* 도로 */}
-        <g stroke={INK} strokeWidth="1.2" strokeLinecap="round">
-          <line x1={X} y1="14" x2={X} y2="376" />
+        <g stroke={INK} strokeWidth="0.7" strokeLinecap="round">
+          <line x1={X} y1="38" x2={X} y2="346" />
           <line x1="24" y1={Y_APGU} x2="324" y2={Y_APGU} />
           <line x1="24" y1={Y_DOSAN} x2="324" y2={Y_DOSAN} />
           <line x1="24" y1={Y_HAKDONG} x2="324" y2={Y_HAKDONG} />
