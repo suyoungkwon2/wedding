@@ -22,7 +22,7 @@ await rm(`${OUT}/gallery`, { recursive: true, force: true });
 await mkdir(`${OUT}/gallery/thumb`, { recursive: true });
 
 if (existsSync(`${SRC}/og.jpg`)) {
-  await resize(`${SRC}/og.jpg`, 1200, 630, "src/app/opengraph-image.jpg", "cover", "attention");
+  await resize(`${SRC}/og.jpg`, 1200, 630, "src/app/opengraph-image.jpg", "cover", "north");
   console.log("og.jpg → src/app/opengraph-image.jpg");
 }
 
