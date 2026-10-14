@@ -980,6 +980,7 @@ ul {
 
 .polaroids__card--0 {
   z-index: 4;
+  transition: none; /* 앞으로 나온 사진은 기울지 않고 바로 반듯하게 */
 }
 
 .polaroids__card--1 {
