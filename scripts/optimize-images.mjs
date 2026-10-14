@@ -14,14 +14,15 @@ const isPhoto = (f) => /\.(jpe?g|png|heic|webp)$/i.test(f);
 const outName = (f) => f.replace(/\.[^.]+$/, ".jpg");
 
 // rotate(): EXIF 회전 반영 / 메타데이터(GPS 등)는 기본으로 제거됨
-const resize = (input, width, height, output, fit = "inside") =>
-  sharp(input).rotate().resize({ width, height, fit, position: "attention", withoutEnlargement: true }).jpeg({ quality: 80, mozjpeg: true }).toFile(output);
+// position: 잘라낼 때 기준. 갤러리 썸네일은 항상 가운데("centre")
+const resize = (input, width, height, output, fit = "inside", position = "centre") =>
+  sharp(input).rotate().resize({ width, height, fit, position, withoutEnlargement: true }).jpeg({ quality: 80, mozjpeg: true }).toFile(output);
 
 await rm(`${OUT}/gallery`, { recursive: true, force: true });
 await mkdir(`${OUT}/gallery/thumb`, { recursive: true });
 
 if (existsSync(`${SRC}/og.jpg`)) {
-  await resize(`${SRC}/og.jpg`, 1200, 630, "src/app/opengraph-image.jpg", "cover");
+  await resize(`${SRC}/og.jpg`, 1200, 630, "src/app/opengraph-image.jpg", "cover", "attention");
   console.log("og.jpg → src/app/opengraph-image.jpg");
 }
 
