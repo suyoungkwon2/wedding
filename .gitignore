@@ -45,3 +45,6 @@ next-env.d.ts
 # 사진 원본 (웹용은 npm run images 로 public/images 에 생성)
 /photos/
 .omc/
+
+# 자동 생성 폰트 (scripts/subset-fonts.mjs)
+/src/app/fonts/

@@ -1,8 +1,39 @@
+/* ───────── 폰트 (사이트에 직접 포함) ─────────
+   원본은 fonts/ 에 있고, 사이트에 쓰인 글자만 남긴 파일이 src/app/fonts/ 에 자동 생성됩니다
+   (npm run dev / build 직전에 scripts/subset-fonts.mjs 실행) */
+
 /* 손글씨 폰트: EF 수박샐러드 (이포트, 상업적 이용 가능) */
 @font-face {
   font-family: "EF_watermelonSalad";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-EF@1.0/EF_watermelonSalad.woff2") format("woff2");
+  src: url("./fonts/EF_watermelonSalad.woff2") format("woff2");
   font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 가비아 흘돋체: 한국어 본문·제목 */
+@font-face {
+  font-family: "Gabia Heuldot";
+  src: url("./fonts/GabiaHeuldot.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 가비아 마음결체: 섹션 영문 제목 */
+@font-face {
+  font-family: "Gabia Maeumgyeol";
+  src: url("./fonts/GabiaMaeumgyeol.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Pretendard Variable: 약도 */
+@font-face {
+  font-family: "Pretendard Variable";
+  src: url("./fonts/PretendardVariable.woff2") format("woff2-variations");
+  font-weight: 45 920;
   font-style: normal;
   font-display: swap;
 }

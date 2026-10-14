@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "node scripts/subset-fonts.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/subset-fonts.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
@@ -21,6 +23,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.3.3",
     "sharp": "^0.35.5",
+    "subset-font": "^2.9.0",
     "typescript": "^5"
   }
 }
