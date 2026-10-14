@@ -103,7 +103,6 @@ export const wedding = {
     "Self_12.jpg",
     "Self_13.jpg",
     "Self_14.jpg",
-    "Self_15.jpg",
     "Studio_20260528_KSY27363.jpg",
     "Studio_20260528_KSY27459.jpg",
     "Studio_20260528_KSY27517.jpg",
