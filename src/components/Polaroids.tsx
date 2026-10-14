@@ -6,7 +6,7 @@ import { asset } from "@/lib/asset";
 import Reveal from "./Reveal";
 
 // 한 장이 머무는 시간 (ms)
-const HOLD = 2200;
+const HOLD = 1200;
 // 플래시가 밝아진 뒤 사진이 바뀌는 시점 (ms) — globals.css 의 .polaroids__flash 애니메이션과 맞춤
 const SWAP_AT = 70;
 
