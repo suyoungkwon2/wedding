@@ -45,6 +45,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="ko" className={display.variable}>
       <head>
+        {/* 웹폰트 서버에 미리 연결해서 글꼴이 늦게 바뀌는 시간을 줄임 */}
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
         {/* 가비아 흘돋체(한국어 전체)·마음결체(섹션 영문 제목): 글자 범위별로 쪼갠 파일이라 화면에 쓰인 글자만 내려받음 */}
         <link
           rel="stylesheet"
