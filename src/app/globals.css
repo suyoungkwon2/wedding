@@ -950,27 +950,61 @@ ul {
   font-variant-numeric: tabular-nums;
 }
 
-/* ───────── Polaroids (안내사항 위 자동 슬라이드) ───────── */
-.polaroids {
-  position: relative;
-  width: min(72%, 290px);
-  aspect-ratio: 3 / 4;
-  margin: 0 auto;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.08);
-  overflow: hidden;
+/* ───────── Polaroids (계좌 위 자동 슬라이드) ───────── */
+.section--polaroids {
+  padding-top: 72px;
 }
 
-.polaroids img {
+.section--polaroids + .section {
+  padding-top: 80px;
+}
+
+/* 사진 더미: 맨 앞 1장 + 뒤로 3장이 살짝 비껴 겹쳐 보임 */
+.polaroids {
+  position: relative;
+  width: min(68%, 270px);
+  aspect-ratio: 3 / 4;
+  margin: 0 auto;
+}
+
+.polaroids__card {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.08);
+  /* 한 장 꺼내면 뒤 사진들이 한 칸씩 앞으로 올라옴 */
+  transition: transform 0.35s ease-out, opacity 0.35s ease-out, filter 0.35s ease-out;
 }
 
-.polaroids img.is-active {
-  opacity: 1;
+.polaroids__card--0 {
+  z-index: 4;
+}
+
+.polaroids__card--1 {
+  z-index: 3;
+  transform: translate(-8px, 6px) rotate(-5deg);
+  filter: brightness(0.97);
+}
+
+.polaroids__card--2 {
+  z-index: 2;
+  transform: translate(9px, 4px) rotate(4.5deg);
+  filter: brightness(0.94);
+}
+
+.polaroids__card--3,
+.polaroids__card--hidden {
+  z-index: 1;
+  transform: translate(3px, 12px) rotate(-2deg);
+  filter: brightness(0.91);
+}
+
+/* 꺼낸 사진은 바로 사라짐 (전환 없이) */
+.polaroids__card--hidden {
+  opacity: 0;
+  transition: none;
 }
 
 /* 카메라 플래시: 순간 밝아졌다가 빠르게 사라짐 */
@@ -980,6 +1014,7 @@ ul {
   background: #fff;
   pointer-events: none;
   opacity: 0;
+  z-index: 5;
   animation: polaroid-flash 0.45s ease-out;
 }
 
@@ -991,6 +1026,7 @@ ul {
 
 @media (prefers-reduced-motion: reduce) {
   .polaroids__flash { display: none; }
+  .polaroids__card { transition: none; }
 }
 
 /* ───────── 8. Notices ───────── */

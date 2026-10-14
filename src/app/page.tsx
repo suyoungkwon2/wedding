@@ -20,8 +20,8 @@ export default function Home() {
       <DateSection />
       <Gallery />
       <Location />
-      <Accounts />
       <Polaroids />
+      <Accounts />
       <Notices />
       <footer className="footer">
         {wedding.groom.nameEn} &amp; {wedding.bride.nameEn}

@@ -9,6 +9,8 @@ import Reveal from "./Reveal";
 const HOLD = 1200;
 // 플래시가 밝아진 뒤 사진이 바뀌는 시점 (ms) — globals.css 의 .polaroids__flash 애니메이션과 맞춤
 const SWAP_AT = 70;
+// 뒤에 겹쳐 보이는 사진 수
+const STACK = 3;
 
 export default function Polaroids() {
   const photos = wedding.polaroids;
@@ -40,20 +42,24 @@ export default function Polaroids() {
   }, [visible, photos.length]);
 
   return (
-    <section className="section">
+    <section className="section section--polaroids">
       <Reveal>
         <div className="polaroids" ref={boxRef}>
-          {photos.map((f, i) => (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              key={f}
-              src={asset(`/images/gallery/${f}`)}
-              alt={i === index ? "폴라로이드 사진" : ""}
-              aria-hidden={i !== index}
-              className={i === index ? "is-active" : undefined}
-              loading="lazy"
-            />
-          ))}
+          {photos.map((f, i) => {
+            // 0 = 맨 앞, 1~3 = 뒤에 겹쳐 살짝 보이는 사진, 그 외는 숨김
+            const depth = (i - index + photos.length) % photos.length;
+            return (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                key={f}
+                src={asset(`/images/gallery/${f}`)}
+                alt={depth === 0 ? "폴라로이드 사진" : ""}
+                aria-hidden={depth !== 0}
+                className={`polaroids__card polaroids__card--${depth <= STACK ? depth : "hidden"}`}
+                loading="lazy"
+              />
+            );
+          })}
           {flash > 0 && <span key={flash} className="polaroids__flash" aria-hidden />}
         </div>
       </Reveal>
