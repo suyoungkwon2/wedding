@@ -1,0 +1,9 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "npm ci",
+  "buildCommand": "NEXT_PUBLIC_BASE_PATH=/kr NEXT_PUBLIC_SITE_URL=https://kaiandmel.vercel.app npm run build && rm -rf dist && mkdir -p dist && cp -R out dist/kr",
+  "outputDirectory": "dist",
+  "trailingSlash": true,
+  "redirects": [{ "source": "/", "destination": "/kr/", "permanent": false }]
+}
