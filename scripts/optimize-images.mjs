@@ -1,5 +1,4 @@
 // 원본 사진(photos/)을 웹용으로 줄여 public/images/ 에 저장합니다.
-//   photos/hero.jpg          → public/images/hero.jpg
 //   photos/gallery/*.jpg     → public/images/gallery/*.jpg       (크게 보기용)
 //                            → public/images/gallery/thumb/*.jpg (그리드 썸네일)
 //   photos/og.jpg (선택)     → src/app/opengraph-image.jpg       (카카오톡 공유 이미지, 1200x630)
@@ -20,11 +19,6 @@ const resize = (input, width, height, output, fit = "inside") =>
 
 await rm(`${OUT}/gallery`, { recursive: true, force: true });
 await mkdir(`${OUT}/gallery/thumb`, { recursive: true });
-
-if (existsSync(`${SRC}/hero.jpg`)) {
-  await resize(`${SRC}/hero.jpg`, 1200, 1800, `${OUT}/hero.jpg`);
-  console.log("hero.jpg");
-}
 
 if (existsSync(`${SRC}/og.jpg`)) {
   await resize(`${SRC}/og.jpg`, 1200, 630, "src/app/opengraph-image.jpg", "cover");

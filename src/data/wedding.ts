@@ -74,7 +74,7 @@ export const wedding = {
     ],
   },
 
-  /** public/images/hero.jpg (원본은 photos/hero.jpg → npm run images) */
+  /** 메인 사진 (갤러리 사진 중에서 고름) */
   hero: {
     image: "/images/gallery/Studio_20260528_KSY28287.jpg",
     /** 처음 보이는 사진. 스크롤하면 image 로 바뀝니다 */

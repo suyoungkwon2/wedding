@@ -17,8 +17,7 @@ npm run dev   # http://localhost:3000
 
 원본은 `photos/`에 넣습니다 (git에 올라가지 않음). `npm run images`를 실행하면 웹용으로 줄인 사진이 만들어집니다.
 
-- `photos/hero.jpg` → 메인 사진
-- `photos/gallery/*` → 갤러리. 순서는 `wedding.ts`의 `gallery` 배열 순서를 따릅니다.
+- `photos/gallery/*` → 갤러리. 순서는 `wedding.ts`의 `gallery` 배열 순서를 따릅니다. 메인 사진도 이 중에서 `wedding.ts`의 `hero`로 고릅니다.
 - `photos/og.jpg` → 카카오톡 공유 이미지 (1200×630으로 자동 크롭)
 
 ## 배포 (GitHub Pages)
