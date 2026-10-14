@@ -44,6 +44,15 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="ko" className={display.variable}>
+      <head>
+        {/* 새로고침하면 이전 스크롤 위치가 아니라 항상 맨 위에서 시작 */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "history.scrollRestoration='manual';window.scrollTo(0,0);addEventListener('pageshow',function(){window.scrollTo(0,0)});",
+          }}
+        />
+      </head>
       <body>{children}</body>
     </html>
   );
