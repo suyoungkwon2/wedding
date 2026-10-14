@@ -78,7 +78,7 @@ export const wedding = {
   hero: {
     image: "/images/gallery/Studio_20260528_KSY28287.jpg",
     /** 처음 보이는 사진. 스크롤하면 image 로 바뀝니다 */
-    before: "/images/gallery/Self_DSC01441.jpg",
+    before: "/images/gallery/Self_1.jpg",
   },
 
   /** 배경음악 (public/ 기준 경로). 비우면 음악 버튼이 사라집니다 */
@@ -89,20 +89,21 @@ export const wedding = {
    * (원본은 photos/gallery/ 에 넣고 npm run images 실행)
    */
   gallery: [
-    "Self_DSC00966.jpg",
-    "Self_DSC01441.jpg",
-    "Self_DSC01469.jpg",
-    "Self_DSC01665.jpg",
-    "Self_DSC01673.jpg",
-    "Self_DSC01695.jpg",
-    "Self_DSC01711.jpg",
-    "Self_DSC02226.jpg",
-    "Self_DSC02587.jpg",
-    "Self_DSC02602.jpg",
-    "Self_DSC02634.jpg",
-    "Self_DSC02727.jpg",
-    "Self_DSC03310.jpg",
-    "Self_DSC03423.jpg",
+    "Self_1.jpg",
+    "Self_2.jpg",
+    "Self_3.jpg",
+    "Self_4.jpg",
+    "Self_5.jpg",
+    "Self_6.jpg",
+    "Self_7.jpg",
+    "Self_8.jpg",
+    "Self_9.jpg",
+    "Self_10.jpg",
+    "Self_11.jpg",
+    "Self_12.jpg",
+    "Self_13.jpg",
+    "Self_14.jpg",
+    "Self_15.jpg",
     "Studio_20260528_KSY27363.jpg",
     "Studio_20260528_KSY27459.jpg",
     "Studio_20260528_KSY27517.jpg",
@@ -121,6 +122,16 @@ export const wedding = {
     "Studio_20260528_KSY28332.jpg",
     "Studio_20260528_KSY28346.jpg",
     "Studio_20260528_KSY28414.jpg",
+    "pola-black.jpg",
+    "pola-intertwined.jpg",
+    "pola-kai.jpg",
+    "pola-kiss.jpg",
+    "pola-mel.jpg",
+    "pola-rings.jpg",
+    "pola-sitting.jpg",
+    "pola-smile.jpg",
+    "pola-upclose.jpg",
+    "pola-white.jpg",
   ],
 
   // TODO: 실제 계좌번호로 수정하세요
