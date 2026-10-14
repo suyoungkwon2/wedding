@@ -121,6 +121,10 @@ export const wedding = {
     "Studio_20260528_KSY28332.jpg",
     "Studio_20260528_KSY28346.jpg",
     "Studio_20260528_KSY28414.jpg",
+  ],
+
+  /** 안내사항 위 폴라로이드 슬라이드 (public/images/gallery/ 기준). 이 순서대로 넘어갑니다 */
+  polaroids: [
     "pola-black.jpg",
     "pola-intertwined.jpg",
     "pola-kai.jpg",

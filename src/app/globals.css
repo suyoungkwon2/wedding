@@ -950,6 +950,49 @@ ul {
   font-variant-numeric: tabular-nums;
 }
 
+/* ───────── Polaroids (안내사항 위 자동 슬라이드) ───────── */
+.polaroids {
+  position: relative;
+  width: min(72%, 290px);
+  aspect-ratio: 3 / 4;
+  margin: 0 auto;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.polaroids img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+}
+
+.polaroids img.is-active {
+  opacity: 1;
+}
+
+/* 카메라 플래시: 순간 밝아졌다가 빠르게 사라짐 */
+.polaroids__flash {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  pointer-events: none;
+  opacity: 0;
+  animation: polaroid-flash 0.45s ease-out;
+}
+
+@keyframes polaroid-flash {
+  0% { opacity: 0; }
+  15% { opacity: 0.7; }
+  100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .polaroids__flash { display: none; }
+}
+
 /* ───────── 8. Notices ───────── */
 .notices {
   margin-top: 40px;
