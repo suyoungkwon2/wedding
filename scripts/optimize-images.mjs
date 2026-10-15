@@ -11,7 +11,7 @@ import sharp from "sharp";
 const SRC = "photos";
 const OUT = "public/images";
 const isPhoto = (f) => /\.(jpe?g|png|heic|webp)$/i.test(f);
-const outName = (f) => f.replace(/\.[^.]+$/, ".jpg");
+const outName = (f) => f.replace(/_?\.[^.]+$/, ".jpg"); // 끝의 "_" 는 무시 (예: KSY27363_.jpg → KSY27363.jpg)
 
 // rotate(): EXIF 회전 반영 / 메타데이터(GPS 등)는 기본으로 제거됨
 // position: 잘라낼 때 기준. 갤러리 썸네일은 항상 가운데("centre")
